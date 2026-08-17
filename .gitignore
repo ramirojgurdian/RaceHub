@@ -1,0 +1,17 @@
+﻿# Build results
+bin/
+obj/
+.vs/
+*.dll
+*.exe
+*.pdb
+
+# IDE
+.idea/
+.vscode/
+*.sln.iml
+
+# Node/Vue
+node_modules/
+dist/
+.env.local

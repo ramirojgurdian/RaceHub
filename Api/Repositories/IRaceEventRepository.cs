@@ -2,5 +2,6 @@ namespace Api.Controllers;
 
 public interface IRaceEventRepository
 {
-    Task<ICollection<RaceEvent>> GetAllEvents();
+    Task<Result<ICollection<RaceEvent>>> GetAllEvents();
+    Task<Result<RaceEvent>> AddEvent(RaceEvent raceEvent);
 }

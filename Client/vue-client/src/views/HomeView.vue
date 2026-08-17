@@ -25,7 +25,7 @@ function getNextRace(): RaceEvent | null {
     .filter((e) => new Date(e.StartTime).valueOf() > Date.now())
     .sort((a, b) => new Date(a.StartTime).valueOf() - new Date(b.StartTime).valueOf())
 
-  return upcoming[0] as RaceEvent
+  return upcoming[0] ?? null
 }
 
 function formatRaceDate(isoString: string) {

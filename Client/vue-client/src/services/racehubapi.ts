@@ -6,7 +6,9 @@ export async function fetchRaceEvents(): Promise<RaceEvent[]> {
   }
 
   const jsonData = await response.json()
-  const rawEvents = (Array.isArray(jsonData) ? jsonData : (jsonData?.value ?? [])) as RawRaceEvent[]
+  const rawEvents = (Array.isArray(jsonData)
+    ? jsonData
+    : (jsonData?.data ?? jsonData?.value ?? [])) as RawRaceEvent[]
 
   return rawEvents.map((item) => ({
     EventName: item.eventName,
@@ -21,14 +23,14 @@ export async function fetchRaceEvents(): Promise<RaceEvent[]> {
 
 export interface RaceEvent {
   EventName: string
-  Series: number
+  Series: string
   StartTime: string
   Track: Track
 }
 
 interface RawRaceEvent {
   eventName: string
-  series: number
+  series: string
   startTime: string
   track: RawTrack
 }

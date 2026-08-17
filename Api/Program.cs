@@ -1,5 +1,6 @@
 
 using Api.Controllers;
+using Api.Repositories;
 using Scalar.AspNetCore;
 
 namespace Api;
@@ -14,7 +15,7 @@ public class Program
 
         builder.Services.AddControllers();
         builder.Services.AddOpenApi();
-        builder.Services.AddScoped<IRaceEventRepository, HardCodedRaceEventRepository>();
+        builder.Services.AddScoped<IRaceEventRepository, JsonRaceEventRepository>();
 
         builder.Services.AddCors(options =>
         {

@@ -7,6 +7,7 @@ interface Props {
 }
 
 let intervalId: ReturnType<typeof setInterval> | null = null
+const now = ref(Date.now())
 
 onMounted(async () => {
   intervalId = setInterval(() => {
@@ -19,7 +20,7 @@ onUnmounted(async () => {
 
 const props = defineProps<Props>()
 const targetDate = computed<Date | null>(() => {
-  return props.raceEvent ? new Date(props.raceEvent.StartTime) : new Date()
+  return props.raceEvent ? new Date(props.raceEvent.StartTime) : null
 })
 
 const nextRace = computed<RaceEvent | null>(() => {
@@ -31,7 +32,6 @@ const remainingMs = computed(() => {
   return Math.max(date ? date.valueOf() - now.value : 0, 0)
 })
 
-const now = ref(Date.now())
 const days = computed(() => Math.floor(remainingMs.value / 86_400_000))
 const hours = computed(() => Math.floor((remainingMs.value % 86_400_000) / 3_600_000))
 const minutes = computed(() => Math.floor((remainingMs.value % 3_600_000) / 60_000))

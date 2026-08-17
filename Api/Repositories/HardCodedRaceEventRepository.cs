@@ -2,7 +2,7 @@ namespace Api.Controllers;
 
 public class HardCodedRaceEventRepository : IRaceEventRepository
 {
-    public Task<ICollection<RaceEvent>> GetAllEvents()
+    public Task<Result<ICollection<RaceEvent>>> GetAllEvents()
     {
         var result = new List<RaceEvent>();
         // Round 1: Australian Grand Prix (Local: 15:00 UTC+11)
@@ -74,6 +74,11 @@ public class HardCodedRaceEventRepository : IRaceEventRepository
         // Round 23: Abu Dhabi Grand Prix (Local: 17:00 UTC+4)
         result.Add(new RaceEvent { EventName = "Abu Dhabi Grand Prix", Series = Series.F1, StartTime = new DateTimeOffset(2026, 12, 6, 13, 0, 0, TimeSpan.Zero), Track = new Track { Country = "United Arab Emirates", Name = "Yas Marina Circuit" } });
 
-        return Task.FromResult<ICollection<RaceEvent>>(result);
+        return Task.FromResult(Result<ICollection<RaceEvent>>.Success(result));
+    }
+
+    public Task<Result<RaceEvent>> AddEvent(RaceEvent raceEvent)
+    {
+        throw new NotImplementedException();
     }
 }

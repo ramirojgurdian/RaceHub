@@ -32,3 +32,5 @@ C:\Users\ramir\repos\RaceHub\Api\obj\Debug\net10.0\Api.pdb
 C:\Users\ramir\repos\RaceHub\Api\obj\Debug\net10.0\Api.genruntimeconfig.cache
 C:\Users\ramir\repos\RaceHub\Api\obj\Debug\net10.0\ref\Api.dll
 C:\Users\ramir\repos\RaceHub\Api\bin\Debug\net10.0\Scalar.AspNetCore.dll
+C:\Users\ramir\repos\RaceHub\Api\bin\Debug\net10.0\Data\raceEvents.json
+C:\Users\ramir\repos\RaceHub\Api\obj\Debug\net10.0\Api.sourcelink.json
