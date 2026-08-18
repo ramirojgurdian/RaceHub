@@ -1,5 +1,5 @@
-export async function fetchRaceEvents(): Promise<RaceEvent[]> {
-  const response = await fetch('http://localhost:5275/RaceEvent')
+export async function fetchRaceEvents(event : string): Promise<RaceEvent[]> {
+  const response = await fetch(`http://localhost:5275/RaceEvent/${event}`)
 
   if (!response.ok) {
     throw new Error('OH NO! Panic')

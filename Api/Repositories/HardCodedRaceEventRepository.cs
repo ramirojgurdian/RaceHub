@@ -81,4 +81,9 @@ public class HardCodedRaceEventRepository : IRaceEventRepository
     {
         throw new NotImplementedException();
     }
+
+    public Task<Result<ICollection<RaceEvent>>> GetEventsForSeries(string series)
+    {
+        throw new NotImplementedException();
+    }
 }

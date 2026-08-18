@@ -90,4 +90,9 @@ const seconds = computed(() => Math.floor((remainingMs.value % 60_000) / 1000))
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.7);
 }
+
+.racename {
+  text-align: center;
+  font-size: 4rem;
+}
 </style>

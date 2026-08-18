@@ -5,13 +5,18 @@ namespace Api.Repositories;
 
 public class JsonRaceEventRepository : IRaceEventRepository 
 {
-    public async Task<Result<ICollection<RaceEvent>>> GetAllEvents()
+    private async Task<ICollection<RaceEvent>> ReadJsonFile()
     {
         var textFile = await File.ReadAllTextAsync("./Data/raceEvents.json");
 
         ICollection<RaceEvent> raceEvents = JsonSerializer.Deserialize<List<RaceEvent>>(textFile) 
                                             ?? throw new Exception("Failed to parse");
+        return raceEvents;
+    }
 
+    public async Task<Result<ICollection<RaceEvent>>> GetAllEvents()
+    {
+        var raceEvents = await ReadJsonFile();
         return Result<ICollection<RaceEvent>>.Success(raceEvents);
     }
 
@@ -20,9 +25,7 @@ public class JsonRaceEventRepository : IRaceEventRepository
     {
         try
         {
-            var textFile = await File.ReadAllTextAsync("./Data/raceEvents.json");
-            ICollection<RaceEvent> raceEvents = JsonSerializer.Deserialize<List<RaceEvent>>(textFile) 
-                                                ?? throw new Exception("Failed to parse");
+            var raceEvents = await ReadJsonFile();
             raceEvents.Add(raceEvent); 
             var json = JsonSerializer.Serialize(raceEvents);
             await File.WriteAllTextAsync("./Data/raceEvents.json", json);
@@ -33,5 +36,11 @@ public class JsonRaceEventRepository : IRaceEventRepository
             return Result<RaceEvent>.Failed(ex.Message);
         }
     }
-        
+
+    public async Task<Result<ICollection<RaceEvent>>> GetEventsForSeries(string series)
+    {
+        var raceEvents = await ReadJsonFile();
+       var result = raceEvents.Where(x => x.Series.Name == series).ToList();
+       return Result<ICollection<RaceEvent>>.Success((ICollection<RaceEvent>)result);
+    }
 }
